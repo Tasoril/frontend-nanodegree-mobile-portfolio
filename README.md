@@ -20,13 +20,18 @@ index.html PageSpeed Optimization:
 Pizza.html 60FPS Scrolling:
  - style.css:
   - Added "will-change: transform;" to ".mover"'s CSS.
+  - Added "transform: translateZ(0);" and "-webkit-transform: translateZ(0);" to trigger GPU assistance in rendering ".mover" (Researched now, but initially suggested by previous reviewer)
+  - Added "backface-visibility: hidden;" and "-webkit-backface-visibility: hidden;" for lower end systems to enable hardware acceleration. (Researched, but initially suggested by previous reviewer)
  - main.js:
   - Moved scrollTop and length calculations out of the for loop.
-  - Swapped querySelectorAll with getElementsByClassName for performance increase.
+  - Swapped querySelectorAll with getElementsByClassName in updatePositions for performance increase.
   - Moved all possible portions of the calculations out of the for loop.
   - Created an array and for loop for the five possible values of the previously constantly recalculated "(i % 5)"
   - Switched to .style.transform instead of .style.left to remove layout and paint requirements for each frame.
+  - Changed static values in DOMContentLoaded event listener with calculated values based on the user's window size to determine the number of background pizzas to draw.
+  - Swapped querySleectorAll with getElementById in DOMContentLoaded event listener and moved it outside the for loop.
   - Added comments to each line indicating what it does.
+  - IMPORTANT: I did not add onResize or similar event listeners as the previous reviewer indicated that they were not neccessary for this project. In a production environment, I would add them for a better UX.
 
 Pizza.html Resize Pizza Optimization:
  - main.js
@@ -48,5 +53,6 @@ Critical Rendering Path for index.html:
 
 Build Tools:
  - I used GULP as a tool to not only minify the js and css and optimize (compress) images, but I also found that there are plugins for JShint and CSSlint which validate CSS styles and JS code for issues or non-optimal settings. I have included my gulpfile.js and package.json in the root directory to display what I used to work on site optimization for index.html and which plugins.
-  - I did NOT minify the CSS or JS for the pizza.html page as those are being evaluated as a part of this project.
-  - Original files for all minified/compressed files can be found in the "preMinified" folder. The minified/compressed files are in the source locations, with copies in the "minified" folder. The "node_modules" folder has been excluded from the repo.
+  - Updated all links in index.html, pizza.html, and main.js to point to minified versions for CSS, JS, and images.
+  - Original files for all minified/compressed files can be found in their original folders. The minified versions of each file are contained within "minified" and then the same directory structure as the source files.
+  - Added 'use strict;' per previous reviewer's suggestion. This ensures that the javascript I write or that is input is sane or will not be executed. (This is not specific to any particular optimization, and isn't exactly a build tool, but is worth noting as a change regardless)
