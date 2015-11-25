@@ -28,6 +28,7 @@ Pizza.html 60FPS Scrolling:
   - Moved all possible portions of the calculations out of the for loop.
   - Created an array and for loop for the five possible values of the previously constantly recalculated "(i % 5)"
   - Switched to .style.transform instead of .style.left to remove layout and paint requirements for each frame.
+  - Resized pizzeria.jpg based on the maximum width it will ever display at on screen to reduce the filesize.
   - Changed static values in DOMContentLoaded event listener with calculated values based on the user's window size to determine the number of background pizzas to draw.
   - Swapped querySleectorAll with getElementById in DOMContentLoaded event listener and moved it outside the for loop.
   - Added comments to each line indicating what it does.
