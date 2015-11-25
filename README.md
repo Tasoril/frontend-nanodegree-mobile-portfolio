@@ -37,3 +37,16 @@ Pizza.html Resize Pizza Optimization:
 		- Swapped all querySelectorAll references in the for loop to the "randomPizzas" variable.
 		- Created "randomPizzasCount" to cache the length of the "randomPizzas" array to prevent recalcuation in the for header.
 		- Switched to using straight % in the style.width command instead of the overly complex and unnecessary "dx" value.
+
+========================================
+==        Exceeds Expectations        ==
+========================================
+Critical Rendering Path for index.html:
+ - Achieved score of 99 for both mobile and desktop.
+  - Note that index.html has an inline stylesheet instead of a linked stylesheet because of the difference in pagespeed results (91 mobile/97 desktop)
+   - In a real production website, I would weigh the advantages and disadvantages, and would likely use PHP to load the CSS which would appear inline client-side, but would have the advantages that a linked CSS document provides. (require_once("style/css.js");) and would evaluate the performance implications of that decision at that time.
+
+Build Tools:
+ - I used GULP as a tool to not only minify the js and css and optimize (compress) images, but I also found that there are plugins for JShint and CSSlint which validate CSS styles and JS code for issues or non-optimal settings. I have included my gulpfile.js and package.json in the root directory to display what I used to work on site optimization for index.html and which plugins.
+  - I did NOT minify the CSS or JS for the pizza.html page as those are being evaluated as a part of this project.
+  - Original files for all minified/compressed files can be found in the "preMinified" folder. The minified/compressed files are in the source locations, with copies in the "minified" folder. The "node_modules" folder has been excluded from the repo.
